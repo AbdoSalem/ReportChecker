@@ -29,11 +29,11 @@ class propertyfile:
         
     def add_property(self,property,value):
         self.read_file()
-        self.properities[property]=value
+        self.properities['properities'][property]=value
         self.update_file()
         
     def get_property(self,property):
         self.read_file()
-        return self.properities[property]
+        return self.properities['properities'][property]
     
     
