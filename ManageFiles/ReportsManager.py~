@@ -1,4 +1,4 @@
-f'''
+'''
 Created on Nov 8, 2014
 
 @author: abdo
@@ -91,20 +91,20 @@ class ReportsManager:
         try:
             msg = email.mime.multipart.MIMEMultipart()
             msg['To'] = to
-            msg['From'] = 'mail@company.com'
+            msg['From'] = '3bdofocus@gmail.com'
             msg['Subject'] = self.report.get_name() + ' result.'
             msg.add_header('reply-to', to)
             smtpObj = smtplib.SMTP('localhost')
             part1 = MIMEText(body, 'plain')
             msg.attach(part1)
-            smtpObj.sendmail('mail@company.com', to, msg.as_string())         
+            smtpObj.sendmail('3bdofocus@gmail.com', to, msg.as_string())         
             print "Successfully sent email"
         except SMTPException:
             print "Error: unable to send email"
         print 'sending%s' % body
     
     def execute_sql(self, file, message):
-        connection = mdb.connect('127.0.0.1', 'root', 'password', 'test')
+        connection = mdb.connect('127.0.0.1', 'root', 'imaao15621012', 'test')
         try:
             self.exec_sql_file(connection, file)
             self.send_message(message["From"], "Thanks, your report is correct.")
@@ -146,7 +146,7 @@ class MailHandler:
     def login(self):
         self.M = imaplib.IMAP4_SSL('imap.gmail.com')
         try:
-            self.M.login('mail@company.com', 'password')
+            self.M.login('3bdofocus@gmail.com', 'imaao15621012')
             self.loggedin = True
             rv, mailboxes = self.M.list()
             if rv == 'OK':
@@ -219,5 +219,5 @@ class MailHandler:
 
 
 # print ReportsManager("4").get_hash("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
-# MailHandler("mail@company.com","password").get_reportmails()
+# MailHandler("3bdofocus@gmail.com","imaao15621012").get_reportmails()
       
