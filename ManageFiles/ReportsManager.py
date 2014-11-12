@@ -203,7 +203,7 @@ class MailHandler:
                 print "ERROR getting message", self.num
                 return
             msg = email.message_from_string(data[0][1])
-            a = re.compile('^{"student":"-?[A-z]+","section":-?[0-9],"report":"-?[A-z]+"}$')
+            a = re.compile('^{"student"(=|:)"-?[A-z]+","section"(=|:)-?[0-9],"report"(=|:)"-?[A-z]+"}$')
             
             if self.get_message_date(msg).year == 2014 and self.get_message_date(msg).month > 9:
                 if(a.match(msg['Subject'])): 
