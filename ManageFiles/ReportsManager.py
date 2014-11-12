@@ -1,4 +1,4 @@
-'''
+f'''
 Created on Nov 8, 2014
 
 @author: abdo
@@ -92,20 +92,20 @@ class ReportsManager:
         try:
             msg = email.mime.multipart.MIMEMultipart()
             msg['To'] = to
-            msg['From'] = '3bdofocus@gmail.com'
+            msg['From'] = 'mail@company.com'
             msg['Subject'] = self.report.get_name() + ' result.'
             msg.add_header('reply-to', to)
             smtpObj = smtplib.SMTP('localhost')
             part1 = MIMEText(body, 'plain')
             msg.attach(part1)
-            smtpObj.sendmail('3bdofocus@gmail.com', to, msg.as_string())         
+            smtpObj.sendmail('mail@company.com', to, msg.as_string())         
             print "Successfully sent email"
         except SMTPException:
             print "Error: unable to send email"
         print 'sending%s' % body
     
     def execute_sql(self, file, message):
-        connection = mdb.connect('127.0.0.1', 'root', 'imaao15621012', 'test')
+        connection = mdb.connect('127.0.0.1', 'root', 'password', 'test')
         try:
             self.exec_sql_file(connection, file)
             self.send_message(message["From"], "Thanks, your report is correct.")
@@ -222,4 +222,4 @@ class MailHandler:
 
 prop=propertyfile("/media/abdo/Abdo/faculty work/DB/Reports")  
 MailHandler(prop.get_property('mail'),prop.get_property('password')).get_reportmails()
-      
+  
