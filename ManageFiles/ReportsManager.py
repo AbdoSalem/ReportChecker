@@ -7,6 +7,7 @@ from report_folder import *
 from section_folder import *
 from Student_folder import *
 from status_file import *
+from properities import *
 #from year_folder import *
 import MySQLdb as mdb 
 import datetime, time
@@ -146,7 +147,8 @@ class MailHandler:
     def login(self):
         self.M = imaplib.IMAP4_SSL('imap.gmail.com')
         try:
-            self.M.login('3bdofocus@gmail.com', 'imaao15621012')
+                     
+            self.M.login(self.mail,self.password)
             self.loggedin = True
             rv, mailboxes = self.M.list()
             if rv == 'OK':
@@ -218,6 +220,6 @@ class MailHandler:
         return result  
 
 
-# print ReportsManager("4").get_hash("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
-# MailHandler("3bdofocus@gmail.com","imaao15621012").get_reportmails()
+prop=propertyfile("/media/abdo/Abdo/faculty work/DB/Reports")  
+MailHandler(prop.get_property('mail'),prop.get_property('password')).get_reportmails()
       
